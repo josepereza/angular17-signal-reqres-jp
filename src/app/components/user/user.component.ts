@@ -14,12 +14,16 @@ export class UserComponent {
 service=inject(UsersService)  
 route= inject(ActivatedRoute)
 selectedId:number=0;
-user=toSignal(
+/* user=toSignal(
   this.route.paramMap.pipe(
     switchMap(params => {
       this.selectedId = Number(params.get('id'));
       return this.service.getUser(this.selectedId);
     })
   )
-)
+) */
+
+user=toSignal(this.route.params.pipe(
+  switchMap(({id})=>this.service.getUser(id))
+))
 }
