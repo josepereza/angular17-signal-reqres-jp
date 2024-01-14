@@ -1,1 +1,27 @@
-<p>user works!</p>
+@if (user()){
+
+<div class="container text-center">
+<h2>User Details</h2>
+
+
+    <div class="row mt-4">
+      <div class="col mt-3">
+
+
+       <span class="fw-bold">User Name :</span> {{user()!.first_name}}
+       <br>
+       <span class="fw-bold">User Last Name :</span> {{user()!.last_name}}
+       <br>
+       <span class="fw-bold">User email :</span> {{user()!.email}}
+
+
+      </div>
+      <div class="col">
+       <img [srcset]=user()!.avatar width="80%" alt="">
+      </div>
+      
+      <a [routerLink]="['/users']" class="btn btn-primary mt-2">Go Home</a>
+    </div>
+  </div>
+
+}

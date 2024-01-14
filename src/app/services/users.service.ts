@@ -1,7 +1,7 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { ApiResponse, User } from '../interfaces/users';
+import { ApiResponse, User, UserResponse } from '../interfaces/users';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,9 @@ http=inject(HttpClient)
       this.users.set(res)
     })
 
+   }
+   getUser(id:number):Observable<User>{
+    return this.http.get<UserResponse>(`${this.urlApi}/${id}`)
+    .pipe(map((res)=>res.data))
    }
 }
